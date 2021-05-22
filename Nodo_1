@@ -1,0 +1,27 @@
+from flask import Flask, app
+import flask
+
+app= Flask(__name__)
+i = 0
+listanumeros = []
+
+@app.route('/validacion/<tamaño:int>')
+tamaño = int
+tamaño = int(input("por favor digite el numero de digitos a sumar : "))   
+class Guardar_numero ():
+  for i in range(tamaño):
+    numeros= input("digite el numero por favor: ")
+    listanumeros.append(numeros)
+    print(listanumeros)
+
+@app.route('/validacion/suma')                  
+def sumalista(listanumeros):
+        sumaTotal = 0
+        for i in listanumeros:
+            sumaTotal = sumaTotal + i
+        return sumaTotal    
+
+        print(sumalista(listanumeros))
+
+if __name__ == "__main__":
+    app.run('127.0.0.2', '5005', debug=True)
