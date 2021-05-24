@@ -13,9 +13,9 @@ class Operaciones:
         
 
     def sumNums (self):
-        suma = 0
-        for i in listanumeros:
-            suma += i
+        self.suma = 0
+        for i in self.listanumeros:
+            self.suma += i
             
-        print(suma)
-        return suma
+        print(self.suma)
+        return self.suma

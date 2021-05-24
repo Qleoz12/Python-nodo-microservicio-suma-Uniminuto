@@ -14,6 +14,6 @@ obj.saveNum(1)
 obj.saveNum(2)
 obj.saveNum(3)
 obj.saveNum(3)
-
+obj.sumNums()
 
     
