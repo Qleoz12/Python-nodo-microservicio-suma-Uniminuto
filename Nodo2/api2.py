@@ -1,23 +1,23 @@
-from flask import Flask, app
+from flask import Flask, jsonify, json, app
 from flask import request
-import json
+
 app= Flask(__name__)
 listanumeros = []
 
 #Funcion suma 
-@app.route('/numero/agregar')
-def agregar():
-    numero = request.args.get('numero')
-    print(numero)
-
+@app.route('/Numero',methods=['GET'])
+def Lista ():
+    suma = 0 
+    for z in listanumeros:
+       suma = suma + z
+    return jsonify('Suma del servidor: ' +suma)
 
 #Funcion para insertar 
-
-@app.route('/numero/agregar')
-def agregar():
-    numero = request.args.get('numero')
-    print(numero)
+@app.route('/Agregar')
+def Agregar():
+    listanumeros.append(request.json['numeros'])
+    return jsonify({'Numero almacenado '})
 
 
 if __name__ == "__main__":
-    app.run('127.0.0.2', '5005', debug=True)
+    app.run('127.0.0.2', '3000', debug=True)
