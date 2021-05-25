@@ -18,10 +18,17 @@ def Agregar():
     listanumeros.append(request.json['numeros'])
     return jsonify({'Numero almacenado '})
 
-
-'''#funcion para traer la suma de las listas 
-@app.route('/Traer', methods=['GET'])'''
- 
+#funcion para traer la suma de las listas 
+@app.route('/Traer', methods=['GET'])
+def Traer():
+    informaciones = request.get("https://localhost:3000/Numero")
+    suma = 0
+    for i in listanumeros:
+        suma = suma + i
+    sumaNodo = []
+    sumaNodo.append({'suma de los numeros: ': suma})  
+    sumaNodo.append(json.loads(informaciones.content))
+    return jsonify('valor total: '+ sumaNodo) 
     
 
 if __name__ == "__main__":
