@@ -16,7 +16,7 @@ class Operaciones:
     def sumNums (self):
         self.suma = 0
         for i in self.listanumeros:
-            self.suma += i
+            self.suma +=  i
     #Se imprime la suma guardada en la variable suma      
         print(self.suma)
         return self.suma
@@ -30,6 +30,6 @@ class Operaciones:
         self.sumaNet = 0
         for i in self.listasumas:
             self.sumaNet += i
-        print(self.sumaNet)
+        print(self.sumaNet + self.suma)
         return self.sumaNet
     

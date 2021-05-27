@@ -11,13 +11,13 @@ _operaciones=Operaciones()
 def Lista (datoNumero):
     #capturar el numero por la api
     _operaciones.saveNum(datoNumero )
-    return jsonify('se ha guardado el numero '+ datoNumero),200
+    return jsonify('se ha guardado el numero: '+ datoNumero),200
 
 #Funcion para insertar 
 @app.route('/sumar', methods=['GET'])
 def sumar():
     sumaNumeros = _operaciones.sumNums()
-    return jsonify('la suma de numero'+str(sumaNumeros)),200
+    return jsonify('la suma de numero: '+str(sumaNumeros)),200
 
 #Recibo por parametros las sumas de los demas nodos y armo un arreglo
 @app.route('/sumaTotal', methods=['GET'])    
