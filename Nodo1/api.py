@@ -10,7 +10,7 @@ def Lista ():
     suma = 0 
     for z in listanumeros:
        suma = suma + z
-    return jsonify('Suma del servidor: ' +suma)
+    return int(jsonify('Suma del servidor: ' +suma))
 
 #Funcion para insertar 
 @app.route('/Agregar', methods=['POST'])
