@@ -30,6 +30,6 @@ class Operaciones:
         self.sumaNet = 0
         for i in self.listasumas:
             self.sumaNet += i
-        print(self.sumaNet)
+        print(self.sumaNet + self.suma)
         return self.sumaNet
     
