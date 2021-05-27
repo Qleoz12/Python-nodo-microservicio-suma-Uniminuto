@@ -1,7 +1,7 @@
 import sys
 print(sys.path)
 sys.path.append("..")
-from operaciones import Operaciones
+from .operaciones import Operaciones
 
 obj = Operaciones()
 
