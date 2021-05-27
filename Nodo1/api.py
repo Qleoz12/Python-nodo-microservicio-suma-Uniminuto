@@ -20,10 +20,10 @@ def sumar():
     return jsonify('la suma de numero: '+str(sumaNumeros)),200
 
 #Recibo por parametros las sumas de los demas nodos y armo un arreglo
-@app.route('/sumaTotal', methods=['GET'])    
-def sumatotal():
-    sumatotal =_operaciones.sumNumNet()
-    return jsonify('la suma total de los nodos es: '+ str(sumatotal)),200
+@app.route('/agregarTotal/<TotalNodo>', methods=['GET'])    
+def sumatotal(TotalNodo):
+    sumatotalArray =_operaciones.saveNumNet(TotalNodo)
+    return jsonify('la suma total de los nodos es: '+ str(sumatotalArray)),200
 
 #Sumamos los numeros recibidos de las sumas de los demas nodos   
 @app.route('/Total', methods=['GET'])
