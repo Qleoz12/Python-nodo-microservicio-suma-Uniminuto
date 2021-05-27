@@ -1,6 +1,6 @@
 
 class Operaciones:
-
+    
     def __init__(self):
         self.i = 0
         #Lista donde se guarda los numeros por nodo
