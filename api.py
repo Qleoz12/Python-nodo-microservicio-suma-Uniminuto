@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, json, app
 from flask import request
 from operaciones import Operaciones
-
+from nodo import Nodo
 app= Flask(__name__)
 listanumeros = []
 _operaciones=Operaciones()
@@ -31,6 +31,34 @@ def Total():
     TotalSuma= _operaciones.sumNumsNet()
     return jsonify('la operacion total de nodos son: '+ str(TotalSuma)),200
 
-if __name__ == "__main__":
 
-    app.run(host='127.0.0.1', port='2000', debug=True)
+
+
+
+
+@app.route('/vecinos', methods=['GET'])
+def vecinos():
+    return jsonify(NodeObj.getVecinos()),200
+
+@app.route('/vecinos/add', methods=['POST'])
+def vecinos_agregar():
+    _rq=request.get_json()
+    print("***********")
+    print(str(_rq))
+    print(str(NodeObj))
+    return jsonify(NodeObj.saveVecino(_rq['ip'])),200
+
+@app.route('/conectarNodos', methods=['GET'])
+def conectarNodos():
+    NodeObj.getneighbordHood()
+    NodeObj.createconetions()
+    if NodeObj.conect:
+        print(NodeObj.getVecinos())
+        NodeObj.conect=False
+        return jsonify("se creacion conexiones"), 200
+
+    return  jsonify("no hay nodos"), 400
+
+if __name__ == "__main__":
+    NodeObj = Nodo()
+    app.run(host='0.0.0.0', port='2000', debug=True)
