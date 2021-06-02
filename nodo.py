@@ -8,6 +8,7 @@ class Nodo:
         self.listaVecinos = []
         self.net = set()
         self.ip=self.get_ip_address()
+        self.conect=False
 
 
     def saveVecino(self,numero):
@@ -67,9 +68,12 @@ class Nodo:
             print("http://"+i+":2000/vecinos"+" - "+str(r))
             if r.status_code==200:
                listavecinosnodovecino=r.json()
-               print(listavecinosnodovecino)
+               print("http://"+i+":2000/vecinos"+str(listavecinosnodovecino))
                #si no tengo los dos llenos em agrego y loa grego
                if len(self.listaVecinos)<2 and len(listavecinosnodovecino)<2:
                    r =requests.post("http://" + i + ":2000/vecinos/add",None,{"ip":self.ip })
-                   print(r)
+                   if r.status_code==200:
+                       print("vecino agregado "+ self.ip +">> <<"+i )
+                       self.saveVecino(i)
+                       self.conect=True
             #de lo contrario sigo

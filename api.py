@@ -52,6 +52,10 @@ def vecinos_agregar():
 def conectarNodos():
     NodeObj.getneighbordHood()
     NodeObj.createconetions()
+    if NodeObj.conect:
+        print(NodeObj.getVecinos())
+        NodeObj.conect=False
+        return jsonify("se creacion conexiones"), 200
 
     return  jsonify("no hay nodos"), 400
 
