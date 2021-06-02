@@ -1,3 +1,4 @@
+import requests
 from flask import Flask, jsonify, json, app
 from flask import request
 from operaciones import Operaciones
@@ -17,7 +18,7 @@ def Lista (datoNumero):
 @app.route('/sumar', methods=['GET'])
 def sumar():
     sumaNumeros = _operaciones.sumNums()
-    return jsonify('la suma de numero: '+str(sumaNumeros)),200
+    return jsonify(str(sumaNumeros)),200
 
 #Recibo por parametros las sumas de los demas nodos y armo un arreglo
 @app.route('/agregarTotal/<TotalNodo>', methods=['GET'])    
@@ -59,6 +60,31 @@ def conectarNodos():
 
     return  jsonify("no hay nodos"), 400
 
+#se obtiene total de la red
+@app.route('/Total/nodos', methods=['GET'])
+def TotalRedNodos():
+    totaldelasumadelared=0
+    NodeObj.getneighbordHood()
+    print("total de la red de nodos "+str(NodeObj.net))
+    for nodoVecino in NodeObj.listaVecinos:
+        r = requests.get("http://" + nodoVecino + ":2000/vecinos")
+        print(r)
+        if r.status_code == 200:
+            print("http://" + nodoVecino + ":2000/vecinos" + " - " + str(r))
+            listavecinosnodovecino = r.json()
+            NodeObj.netCalculated.update(listavecinosnodovecino)
+
+    print(str(NodeObj.netCalculated))
+    for nodo in NodeObj.netCalculated:
+        r = requests.get("http://" + nodo + ":2000/sumar")
+        print(r)
+        if r.status_code == 200:
+            print("http://" + nodo + ":2000/sumar" + " - " + str(r.json()))
+            totaldelasumadelared+=int(r.json())
+
+    return jsonify("la suma de la red es "+ str(totaldelasumadelared)), 200
+
+    return jsonify('la operacion total de nodos son: '+ str(TotalSuma)),200
 if __name__ == "__main__":
     NodeObj = Nodo()
     app.run(host='0.0.0.0', port='2000', debug=True)

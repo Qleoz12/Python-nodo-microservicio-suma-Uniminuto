@@ -25,13 +25,30 @@ curl http://172.28.5.3:2000/vecinos
 
 curl http://172.28.5.0:2000/conectarNodos
 curl http://172.28.5.1:2000/conectarNodos
+curl http://172.28.5.2:2000/conectarNodos
+curl http://172.28.5.3:2000/conectarNodos
 
 --local
 curl http://192.168.0.4:2000/conectarNodos
 
+#interaccion de exposicion
+docker exec -it nodo-1 bash
+#composicion  de dinamicas
+curl http://172.28.5.0:2000/Numero/1
+curl http://172.28.5.1:2000/Numero/1
+curl http://172.28.5.2:2000/Numero/1
+curl http://172.28.5.3:2000/Numero/1
 
-docker rm node-1
-docker rm node-1
+curl http://172.28.5.0:2000/sumar
+curl http://172.28.5.1:2000/sumar
+curl http://172.28.5.2:2000/sumar
+curl http://172.28.5.3:2000/sumar
 
+curl http://172.28.5.0:2000/Total/nodos
+
+docker-compose up
 docker-compose down -v --rmi all --remove-orphans
-172.28.5.1/
+
+
+#interaccion de exposicion
+docker exec -it nodo-1 bash

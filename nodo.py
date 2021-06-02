@@ -7,6 +7,7 @@ class Nodo:
         #arreglo donde se guarda los numeros por nodo
         self.listaVecinos = []
         self.net = set()
+        self.netCalculated = set()
         self.ip=self.get_ip_address()
         self.conect=False
 
