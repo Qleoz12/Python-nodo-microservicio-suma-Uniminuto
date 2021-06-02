@@ -13,10 +13,9 @@ COPY . /APPS/nodo
 
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-interaction
-RUN apt-get-update install curl
-RUN apt-get install net-tools
-CMD ["python", "api.py"]
+RUN apt-get update && apt-get -y install curl
+RUN apt-get update && apt-get -y install net-tools
+CMD ["python", "-u","api.py"]
 
 
-
-
+#  docker build -t nodo-microservicio .
